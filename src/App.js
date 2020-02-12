@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import data from './json'
 
-function App() {
+function Badge({balance, name }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <li 
+   >
+     {name}
+     <p > {balance} </p>
+    </li>
+  )
 }
 
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <ul className='container'>
+        {data.map(({_id, ...rest})=> {
+          return (
+            <Badge 
+            key={_id}
+            {...rest}
+          />
+          )
+      })}
+      </ul>
+    )
+  }
+}
+
