@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 
 export default function LanguagesNav({ selected, onUpdatedLanguage}) {
   const   languages = ['ALL', "JS", "GO", "Pyth"]
   return (
     <ul className='row'  >
+      <h1>{selected}</h1>
     {languages.map((language, i)=> {
       return (
         <li key={i} 
@@ -20,4 +23,9 @@ export default function LanguagesNav({ selected, onUpdatedLanguage}) {
     })}
 </ul>
   )
+}
+
+LanguagesNav.propTypes = {
+ selected: PropTypes.string.isRequired,
+ onUpdatedLanguage: PropTypes.func.isRequired,
 }
