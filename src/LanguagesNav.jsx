@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 export default function LanguagesNav({ selected, onUpdatedLanguage}) {
-  const   languages = ['ALL', "JS", "GO", "Pyth"]
+  const   languages = ['ALL', "Java", "GO", "Python", "graphql-js"]
   return (
     <ul className='row'  >
       <h1>{selected}</h1>

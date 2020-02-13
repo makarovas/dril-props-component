@@ -5,9 +5,19 @@ import LanguagesNav from './LanguagesNav'
 import fetchReops from './utils/api'
 
 export  class Popular2 extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //       selectedLanguage: 'ALL',
+  //       repos: {},
+  //       error: null,
+  //       loading: true
+  //   }
+  //   this.isLoading = this.isLoading.bind(this)
+  // }
   state = {
     selectedLanguage: 'ALL',
-    repos: null,
+    repos: {},
     error: null,
     loading: true
   }
@@ -19,6 +29,7 @@ export  class Popular2 extends React.Component {
   //     }
   //   }})
   // }
+
   componentDidMount( ) {
     this.updateLanguage(this.state.selectedLanguage)
   }
@@ -30,26 +41,43 @@ export  class Popular2 extends React.Component {
       loading: false,
       repos: null
     })
-    fetchReops(selectedLanguage)
-    .then((repos)=> {
-      this.setState({
-        repos,
-        loading: false,
-        error: null
+
+
+    if(!this.state.repos[selectedLanguage]) {
+      fetchReops(selectedLanguage)
+      .then((data)=> {
+        this.setState(({repos})=> ({
+          repos: {
+            ...repos,
+            [selectedLanguage]: data
+          }
+        }))
       })
-    })
-    .catch((error)=>{
-      this.setState({
-        error: error
+      .catch((error)=>{
+        this.setState({
+          error: error
+        })
       })
-    })
+    }
+
+    // fetchReops(selectedLanguage)
+    // .then((repos)=> {
+    //   this.setState({
+    //     repos,
+    //     error: null
+    //   })
+    // })
+    
   }
-  isLoading = ( ) => {
-    return this.state.repos === null && this.state.error === null
+
+  isLoading ( ) {
+      const {selectedLanguage, error, repos } = this.state;
+    return !repos && error === null  
+    // return repos === null && error === null
   }
 
   render() {
-    const {selectedLanguage, error, repos, loading, } = this.state;
+    const {selectedLanguage, error, repos } = this.state;
     return (
       <>
        <LanguagesNav 
@@ -57,8 +85,10 @@ export  class Popular2 extends React.Component {
         onUpdatedLanguage={this.updateLanguage}
       />
       {this.isLoading() && <p>Loading...</p>}
-      {error && <pre>{error}</pre>}
-      {repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
+      {error && <p>{error}</p>}
+      {
+      repos && 
+      <pre>{JSON.stringify(repos, null, 2)}</pre>}
       </>
     )
   }
