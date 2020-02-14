@@ -8,37 +8,7 @@ li {
 }
 
 ul {
-  margin-top: 50px;
   
-}
+  padding: 0;
 
-button {
-  border-radius: ;
-  width: 100%;
-  display: inline-block;
-  border: none;
-  padding: 1rem 2rem;
-  margin: 0;
-  text-decoration: none;
-  background: lighgrey;
-  color: #ffffff;
-  font-family: sans-serif;
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-  text-align: center;
-  transition: background 250ms ease-in-out, transform 150ms ease;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-button:hover,
-button:focus {
-  background: black;
-  color: #fff !important
-}
-
-button:focus {
-  outline: none;
-  outline-offset: -4px;
 }

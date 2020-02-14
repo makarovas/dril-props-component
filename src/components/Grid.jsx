@@ -7,6 +7,9 @@ export default function Grid({repos = []} = {}) {
   
   
   return (
+   
+   <>
+      <h1>Top github accounts</h1>
     <ul className='row'>
     {repos.map((repo,i)=>{
       const { name, owner, html_url, stargazers_count, open_issues} = repo;
@@ -31,6 +34,13 @@ export default function Grid({repos = []} = {}) {
       )
     })}
     </ul>
+   </>
+   
+  
+   
+
+
+   
       
     
     

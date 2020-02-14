@@ -5,7 +5,7 @@ import LanguagesNav from './LanguagesNav'
 import fetchReops from '../utils/api'
 import Grid from './Grid'
 
-export  class Popular2 extends React.Component {
+export  class Popular extends React.Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -23,13 +23,6 @@ export  class Popular2 extends React.Component {
     loading: true
   }
   
-  // updateLanguage = (selectedLanguage) => {
-  //   this.setState({(state)=> {
-  //     return {
-  //       selectedLanguage: state.selectedLanguage
-  //     }
-  //   }})
-  // }
 
   componentDidMount( ) {
     this.updateLanguage(this.state.selectedLanguage)
@@ -60,15 +53,6 @@ export  class Popular2 extends React.Component {
         })
       })
     }
-
-    // fetchReops(selectedLanguage)
-    // .then((repos)=> {
-    //   this.setState({
-    //     repos,
-    //     error: null
-    //   })
-    // })
-    
   }
 
   isLoading ( ) {
@@ -80,15 +64,15 @@ export  class Popular2 extends React.Component {
   render() {
     const {selectedLanguage, error, repos } = this.state;
     return (
-      <>
-       <LanguagesNav 
-        selected={selectedLanguage}
-        onUpdatedLanguage={this.updateLanguage}
-      />
-      {this.isLoading() && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {repos && <Grid repos={repos[selectedLanguage]}/>}
-      </>
+      <section className="container-fluid">
+        <LanguagesNav 
+          selected={selectedLanguage}
+          onUpdatedLanguage={this.updateLanguage}
+        />
+        {this.isLoading() && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        {repos && <Grid repos={repos[selectedLanguage]}/>}
+      </section>
     )
   }
 }

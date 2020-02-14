@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 
 export default function LanguagesNav({ selected, onUpdatedLanguage}) {
-  const   languages = ['ALL', "Java", "GO", "Python", "graphql-js"]
+  const   languages = ['ALL', "Java", "Python", "graphql-js"]
   return (
-    <ul className='column'  >
+    <ul className='row'>
     {languages.map((language, i)=> {
       return (
         <li key={i} 
         className='col-lg-12' style={{marginBottom: '10px'}}>
           <button 
-            className='btn-clear nav-link' 
+            className='btn btn-secondary  btn-sm ' 
             onClick={()=> onUpdatedLanguage(language)}
-            style={language === selected ? { color: "red"} : {color: 'black'}}
+            style={language === selected ? { color: "yellow"} : {color: 'white'}}
           >
           {language}
           </button>
