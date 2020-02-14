@@ -1,8 +1,9 @@
 
 import React from 'react'
-import './index.css'
+import '../index.css'
 import LanguagesNav from './LanguagesNav'
-import fetchReops from './utils/api'
+import fetchReops from '../utils/api'
+import Grid from './Grid'
 
 export  class Popular2 extends React.Component {
   // constructor(props) {
@@ -71,7 +72,7 @@ export  class Popular2 extends React.Component {
   }
 
   isLoading ( ) {
-      const {selectedLanguage, error, repos } = this.state;
+      const {error, repos } = this.state;
     return !repos && error === null  
     // return repos === null && error === null
   }
@@ -86,9 +87,7 @@ export  class Popular2 extends React.Component {
       />
       {this.isLoading() && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {
-      repos && 
-      <pre>{JSON.stringify(repos, null, 2)}</pre>}
+      {repos && <Grid repos={repos[selectedLanguage]}/>}
       </>
     )
   }

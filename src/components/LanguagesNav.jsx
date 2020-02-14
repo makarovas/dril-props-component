@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 export default function LanguagesNav({ selected, onUpdatedLanguage}) {
   const   languages = ['ALL', "Java", "GO", "Python", "graphql-js"]
   return (
-    <ul className='row'  >
-      <h1>{selected}</h1>
+    <ul className='column'  >
     {languages.map((language, i)=> {
       return (
         <li key={i} 
-        className='col-lg-3'>
+        className='col-lg-12' style={{marginBottom: '10px'}}>
           <button 
             className='btn-clear nav-link' 
             onClick={()=> onUpdatedLanguage(language)}
