@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 
 function Instruction() {
@@ -9,7 +10,9 @@ function Instruction() {
       <li className='col-sm'> 
         <h3>Enter two users</h3>
       </li>
-      <li  className='col-sm'> 
+
+      <li 
+       className='col-sm'> 
         <h3>Battle</h3>
       </li>
       <li  className='col-sm'>
@@ -22,25 +25,58 @@ function Instruction() {
 
 class PlayerInput extends Component {
   state = {
-    username: ''
+    username: '',
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.username);
+  }
+
+  handleChange=(e) => {
+    this.setState({
+      username: e.target.value
+    })
   }
   render ( ) {
     return (
-      <form >
-        <label htmlFor="enterValue">
-          <input id='enterValue' type="text" className='orm-control form-control-lg'/>
-          </label>
+     <form onSubmit={this.handleSubmit}>
+        <label htmlFor="enterValue">{this.props.label}</label>
+        <input 
+          id='enterValue' 
+          type="text" 
+          className='form-control form-control-lg' 
+          placeholder='Enter github username'
+          autoComplete='off'
+
+          onChange={this.handleChange}
+          value={this.state.username} 
+        />
+          <button 
+          className='btn btn-outline-secondary btn-lg' 
+          disabled={!this.state.username}
+          style={{marginTop: '20px'}}
+          >
+            Submit
+          </button>
       </form>
     )
   }
 }
 
+PlayerInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+}
 export default class Battle extends Component {
   render() {
     return (
       <div className='container'>
         <Instruction/>
-        <PlayerInput/>
+        <PlayerInput 
+          label='Lalbe'
+          onSubmit={()=> console.log('this.props.username')}
+        />
       </div>
     )
   }
