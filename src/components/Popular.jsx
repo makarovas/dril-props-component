@@ -2,7 +2,7 @@
 import React from 'react'
 import '../index.css'
 import LanguagesNav from './LanguagesNav'
-import fetchReops from '../utils/api'
+import fetchRepos from '../utils/api'
 import Grid from './Grid'
 
 export  class Popular extends React.Component {

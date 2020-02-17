@@ -4,11 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Grid({ repos = [] } = {}) {
-  // let  reps = JSON.stringify(repos, null, 2)
-
-
   return (
-
     <>
       <h1>Top github accounts</h1>
       <ul className="row">
